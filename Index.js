@@ -39,6 +39,16 @@ app.get('/publicacion_de_blog/:id', (req, res) => {
     });
   });
 
+// Crear un nuevo registro
+app.post('/publicacion_de_blog', (req, res) => {
+    const { titulo, contenido,autor,categoria,fecha} = req.body;
+    connection.query(`INSERT INTO publicacion_de_blog (titulo, contenido,autor,categoria,fecha) VALUES ('${titulo}', '${contenido}', '${autor}', '${categoria}', '${fecha}')`, (error, results) => {
+      if (error) throw error;
+      res.send('Registro creado exitosamente');
+    });
+  });
+
+
 
 app.listen(3000, () => {
     console.log('API escuchando en el puerto 3000');
