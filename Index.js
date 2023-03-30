@@ -48,6 +48,16 @@ app.post('/publicacion_de_blog', (req, res) => {
     });
   });
 
+    // Actualizar un registro existente
+app.put('/publicacion_de_blog/:id', (req, res) => {
+    const { id } = req.params;
+    const {titulo, contenido,autor,categoria,fecha } = req.body;
+    connection.query(`UPDATE publicacion_de_blog SET titulo='${titulo}',contenido='${contenido}',autor='${autor}',categoria='${categoria}', fecha='${fecha}' WHERE id=${id}`, (error, results) => {
+      if (error) throw error;
+      res.send('Registro actualizado exitosamente');
+    });
+  });
+
 
 
 app.listen(3000, () => {
