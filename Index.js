@@ -30,6 +30,15 @@ app.get('/publicacion_de_blog', (req, res) => {
     });
   });
 
+  // Leer un registro por ID
+app.get('/publicacion_de_blog/:id', (req, res) => {
+    const { id } = req.params;
+    connection.query(`SELECT * FROM publicacion_de_blog WHERE id=${id}`, (error, results) => {
+      if (error) throw error;
+      res.send(results[0]);
+    });
+  });
+
 
 app.listen(3000, () => {
     console.log('API escuchando en el puerto 3000');
